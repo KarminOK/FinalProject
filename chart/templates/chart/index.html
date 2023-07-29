@@ -1,0 +1,83 @@
+{% extends "chart/base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% load static %}
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form role="search" class="navbar-form-custom form-inline search" method="post" action="http://www.zi-han.net/theme/hplus/search_results.html">
+                <div class="form-group ">
+                    <label  for="nw_lat"> nw_lat：</label><input type="text" placeholder="Please enter nw_lat …" class="form-control search" name="nw_lat" value="{{nw_lat}}" id="nw_lat">
+                </div>
+                <div class="form-group ">
+                    <label for="nw_long"> nw_long：</label><input type="text" placeholder="Please enter nw_long …" class="form-control search" name="nw_long" value="{{nw_long}}" id="nw_long">
+                </div>
+                <div class="form-group ">
+                    <label for="se_lat"> se_lat：</label><input type="text" placeholder="Please enter se_lat …" class="form-control search" name="se_lat"  value="{{se_lat}}" id="se_lat">
+                </div>
+                <div class="form-group ">
+                    <label for="se_long"> se_long：</label><input type="text" placeholder="Please enter se_long …" class="form-control search" name="se_long"  value="{{se_long}}" id="se_long">
+                </div>
+                <div class="form-group ">
+                    <button type="button" class="btn btn-primary" onClick="search()">search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="float: none">
+                    <div class="ibox-tools" style="width: 100%">
+                        <img src="draw?type=pie" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="float: none">
+                    <div class="ibox-tools" style="width: 100%">
+                        <img src="draw?type=grid" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="float: none">
+                    <div class="ibox-tools" style="width: 100%">
+                        <img src="draw?type=barh" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="float: none">
+                    <div class="ibox-tools" style="width: 100%">
+                        <img src="draw?type=scatter" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% else %}
+<div class="container py-5">
+    <h1 class="text-center">Please <a href="login">login</a> first.</h1>
+</div>
+{% endif %}
+
+{% endblock %}
