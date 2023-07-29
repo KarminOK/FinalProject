@@ -12,19 +12,19 @@
         <div class="col-sm-12">
             <form role="search" class="navbar navbar-expand-lg navbar-light bg-light" method="GET">
                 {% csrf_token %}
-                <div class="form-group ">
+                <div class="form-group d-flex">
                     <label for="nw_lat"> nw_lat：</label><input type="text" placeholder="Please enter nw_lat …" class="form-control search" name="nw_lat" value="{{nw_lat}}" id="nw_lat">
                 </div>
-                <div class="form-group ">
+                <div class="form-group d-flex">
                     <label for="nw_long"> nw_long：</label><input type="text" placeholder="Please enter nw_long …" class="form-control search" name="nw_long" value="{{nw_long}}" id="nw_long">
                 </div>
-                <div class="form-group ">
+                <div class="form-group d-flex">
                     <label for="se_lat"> se_lat：</label><input type="text" placeholder="Please enter se_lat …" class="form-control search" name="se_lat"  value="{{se_lat}}" id="se_lat">
                 </div>
-                <div class="form-group ">
+                <div class="form-group d-flex">
                     <label for="se_long"> se_long：</label><input type="text" placeholder="Please enter se_long …" class="form-control search" name="se_long"  value="{{se_long}}" id="se_long">
                 </div>
-                <div class="form-group ">
+                <div class="form-group d-flex">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
