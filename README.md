@@ -1,9 +1,16 @@
 # ITMD 513 FinalProject
-### use a django website to display chicago crime rate statics
+### use a django website to display crime rate statics
 
 ## contributors:
 Gengxin Li  
 Qiyun Zhu
+
+### Main Functions:
+Function of querying statistical charts of criminal records according to latitude and longitude
+User login authentication, registration, management functions
+
+### Technical Summary:
+Use Django as a web service, use the auth module that comes with Django for user management. Use crispy and bootstrap4 for web development. Use Pandas and Matplotlib to generate statistical charts, the generated image data is not saved, and returned directly by http.
 
 ### how to run
 1. install dependent packages:  
