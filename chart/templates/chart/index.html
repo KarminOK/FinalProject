@@ -10,9 +10,9 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form role="search" class="navbar-form-custom form-inline search" method="post" action="http://www.zi-han.net/theme/hplus/search_results.html">
+            <form role="search" class="navbar navbar-expand-lg navbar-light bg-light" method="post" action="">
                 <div class="form-group ">
-                    <label  for="nw_lat"> nw_lat：</label><input type="text" placeholder="Please enter nw_lat …" class="form-control search" name="nw_lat" value="{{nw_lat}}" id="nw_lat">
+                    <label for="nw_lat"> nw_lat：</label><input type="text" placeholder="Please enter nw_lat …" class="form-control search" name="nw_lat" value="{{nw_lat}}" id="nw_lat">
                 </div>
                 <div class="form-group ">
                     <label for="nw_long"> nw_long：</label><input type="text" placeholder="Please enter nw_long …" class="form-control search" name="nw_long" value="{{nw_long}}" id="nw_long">
@@ -30,13 +30,12 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-sm-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="float: none">
                     <div class="ibox-tools" style="width: 100%">
-                        <img src="draw?type=pie" style="width: 100%">
+                        <img src="draw?type=pie&nw_lat={{nw_lat}}&nw_long={{nw_long}}&se_lat={{se_lat}}&se_long={{se_long}}" style="width: 100%">
                     </div>
                 </div>
             </div>
@@ -45,7 +44,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="float: none">
                     <div class="ibox-tools" style="width: 100%">
-                        <img src="draw?type=grid" style="width: 100%">
+                        <img src="draw?type=grid&nw_lat={{nw_lat}}&nw_long={{nw_long}}&se_lat={{se_lat}}&se_long={{se_long}}" style="width: 100%">
                     </div>
                 </div>
             </div>
@@ -57,7 +56,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="float: none">
                     <div class="ibox-tools" style="width: 100%">
-                        <img src="draw?type=barh" style="width: 100%">
+                        <img src="draw?type=barh&nw_lat={{nw_lat}}&nw_long={{nw_long}}&se_lat={{se_lat}}&se_long={{se_long}}" style="width: 100%">
                     </div>
                 </div>
             </div>
@@ -66,7 +65,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="float: none">
                     <div class="ibox-tools" style="width: 100%">
-                        <img src="draw?type=scatter" style="width: 100%">
+                        <img src="draw?type=scatter&nw_lat={{nw_lat}}&nw_long={{nw_long}}&se_lat={{se_lat}}&se_long={{se_long}}" style="width: 100%">
                     </div>
                 </div>
             </div>

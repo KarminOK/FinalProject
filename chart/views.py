@@ -12,6 +12,11 @@ def index(request):
     nw_long = request.GET.get("nw_long")
     se_lat = request.GET.get("se_lat")
     se_long = request.GET.get("se_long")
+    if not nw_lat or not nw_long or not se_lat or not se_long:
+        nw_lat = "41.975121"
+        nw_long = "-87.791649"
+        se_lat = "41.978260"
+        se_long = "-87.763931"
     return render(request=request, template_name="chart/index.html", context={"nw_lat": nw_lat, "nw_long": nw_long,
                                                                               "se_lat": se_lat, "se_long": se_long})
 
