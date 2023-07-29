@@ -12,10 +12,18 @@
         {{ login_form|crispy }}
         <button class="btn btn-primary" type="submit">Login</button>
     </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <p class="text-center">Don't have an account? <a href="register">Create an account</a>.</p>
     <p class="text-center">or</p>
     <p class="text-center">You can use default account:</p>
     <p class="text-center">gengxin 123456</p>
+    <p class="text-center">qiyun 123456</p>
 </div>
 
 {% endblock %}

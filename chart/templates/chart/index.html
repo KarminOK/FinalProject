@@ -10,7 +10,8 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form role="search" class="navbar navbar-expand-lg navbar-light bg-light" method="post" action="">
+            <form role="search" class="navbar navbar-expand-lg navbar-light bg-light" method="GET">
+                {% csrf_token %}
                 <div class="form-group ">
                     <label for="nw_lat"> nw_lat：</label><input type="text" placeholder="Please enter nw_lat …" class="form-control search" name="nw_lat" value="{{nw_lat}}" id="nw_lat">
                 </div>
@@ -24,7 +25,7 @@
                     <label for="se_long"> se_long：</label><input type="text" placeholder="Please enter se_long …" class="form-control search" name="se_long"  value="{{se_long}}" id="se_long">
                 </div>
                 <div class="form-group ">
-                    <button type="button" class="btn btn-primary" onClick="search()">search</button>
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
         </div>
