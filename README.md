@@ -2,8 +2,13 @@
 ### use a django website to display crime rate statics
 
 ## contributors:
-Gengxin Li  
-Qiyun Zhu
+Gengxin Li A20478998 
+gli41@hawk.iit.edu
+
+
+Qiyun Zhu A20479136 
+qzhu20@hawk.iit.edu
+
 
 ### Main Functions:
 Function of querying statistical charts of criminal records according to latitude and longitude
@@ -22,8 +27,20 @@ python -m pip install django
 python -m pip install django-crispy-forms
 python -m pip install crispy-bootstrap4
 ```
+Note: Before running these commands, make sure you have Python installed on your system.
+
 2. run web server:
 ```
+Note: To run the web server, navigate to the project directory using the command line, and then execute the following command:
 python manage.py runserver
 ```
-3. visit the site: http://127.0.0.1:8000/
+
+3. visit the site:
+```
+ http://127.0.0.1:8000/
+```
+
+4. test data:
+```
+ 41.937378   -87.660078    41.931409   -87.651198
+```
