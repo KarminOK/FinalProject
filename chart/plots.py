@@ -4,6 +4,7 @@ from .data import data as d
 import matplotlib.pyplot as plt
 import pandas as pd
 import uuid
+import json
 
 matplotlib.use('Agg')  # Set backend to Agg
 
@@ -38,8 +39,6 @@ def scatter(response, nw_lat, nw_long, se_lat, se_long):
 
 
 
-
-
 def barh(response, nw_lat, nw_long, se_lat, se_long):
     # Load data within the specified location
     df = d(nw_lat, nw_long, se_lat, se_long)
@@ -61,36 +60,57 @@ def barh(response, nw_lat, nw_long, se_lat, se_long):
     # Add statistical information to the plot
     for i, v in enumerate(data['counts']):
         ax.text(v, i, str(v), ha='left', va='center')
-
+    
     fig.savefig(response)
-
 
 
 def grid(response, nw_lat, nw_long, se_lat, se_long):
     # Load data within the specified location
     df = d(nw_lat, nw_long, se_lat, se_long)
     
-    # Extract the month from the 'date' column
-    df['date'] = df['date'].apply(lambda s1: s1[5:7])
+    # Convert 'date' column to datetime type
+    df['date'] = pd.to_datetime(df['date'])
     
     # Group data by month and calculate the number of criminal records for each month
-    s = df[['date']]
-    crime_count = pd.DataFrame(s.groupby('date').size().sort_values(ascending=True).rename('counts'))
-    data = crime_count.iloc[:]
+    crime_count = df.resample('M', on='date').size().rename('counts')
+    data = crime_count.reset_index()
     
     # Calculate average number of criminal records per day
-    average = data.apply(lambda s1: s1 / 30)
+    data['average'] = data['counts'] / 30
     
     # Create the line plot with grid
     fig = plt.figure(uuid.uuid1(), figsize=(10, 8))
     ax = fig.subplots()
-    ax.plot(data.index.values, data['counts'], label='Total Criminal Records', color="r")
-    ax.plot(data.index.values, average, label='Average Criminal Records per Day', color="blue")
+    ax.plot(data['date'], data['counts'], label='Total Criminal Records', color="r")
+    ax.plot(data['date'], data['average'], label='Average Criminal Records per Day', color="blue")
     ax.grid(alpha=0.2)
     ax.legend(loc="upper left")
     ax.set_title('Total Monthly Criminal Records and Average Criminal Records per Day')
     
+    # Set the x-axis tick labels to show only the months (e.g., "Jan", "Feb", etc.)
+    ax.xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter("%b"))
+    
+    # Serialize the data for comparison
+    serialized_data = data.to_json(orient='records')
+    with open('data.json', 'w') as file:
+        file.write(serialized_data)
+    
+    # Deserialize the data for comparison
+    with open('data.json', 'r') as file:
+        deserialized_data = json.load(file)
+    
+    print("Serialized Data:")
+    print(json.dumps(deserialized_data, indent=2))
+    
+    # Perform data comparison (example: comparing last month's data with this month's data)
+    last_month_data = deserialized_data[-2]  # Assuming data is sorted by date
+    this_month_data = deserialized_data[-1]
+    print("Comparison between Last Month and This Month:")
+    print(f"Last Month - Date: {last_month_data['date']}, Counts: {last_month_data['counts']}")
+    print(f"This Month - Date: {this_month_data['date']}, Counts: {this_month_data['counts']}")
+    
     fig.savefig(response)
+
 
 
 def pie(response, nw_lat, nw_long, se_lat, se_long):
@@ -114,5 +134,13 @@ def pie(response, nw_lat, nw_long, se_lat, se_long):
     total_records = data['counts'].sum()
     ax.text(0.5, -0.1, f"Total Records: {total_records}", transform=ax.transAxes, ha='center')
     
+
+    
+    
+    # Perform simple statistics and print the result
+    crime_counts = df['primary_type'].value_counts().reset_index()
+    crime_counts.columns = ['primary_type', 'counts']
+    print(crime_counts)
+
     fig.savefig(response)
 
